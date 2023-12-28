@@ -60,7 +60,9 @@ exports.updateLoggedUserPassword = asyncHandler(async (req, res, next) => {
 exports.updateLoggedUserData = asyncHandler(async (req, res, next) => {
   const updatedUser = await db.User.update(
     {
+      
       name: req.body.name,
+      slug:req.body,slug,
       phone: req.body.phone,
       profileImg: req.body.profileImg,
     },
@@ -71,7 +73,7 @@ exports.updateLoggedUserData = asyncHandler(async (req, res, next) => {
     return next(new ApiError('User not found', 404));
   }
 
-  res.status(200).json({ data: updatedUser[1][0] });
+  res.status(200).json({ status: 'Success'});
 });
 
 // Deactivate logged user
